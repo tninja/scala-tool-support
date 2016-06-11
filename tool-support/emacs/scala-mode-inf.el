@@ -57,7 +57,7 @@
   :group 'scala
   :tag "Inferior Scala")
 
-(defcustom scala-interpreter "scala"
+(defcustom scala-interpreter "spark-shell"
   "The interpreter that `run-scala' should run. This should
  be a program in your PATH or the full pathname of the scala interpreter."
   :type 'string
@@ -87,7 +87,7 @@
 
 (defun scala-check-interpreter-running ()
   (unless (scala-interpreter-running-p-1)
-    (error "Scala interpreter not running")))
+    (scala-run-scala scala-interpreter)))
 
 ;;;###autoload
 (defun scala-run-scala (cmd-line)
@@ -114,7 +114,7 @@
   "Switch to buffer containing the interpreter"
   (interactive)
   (scala-check-interpreter-running)
-  (switch-to-buffer scala-inf-buffer-name))
+  (switch-to-buffer-other-window scala-inf-buffer-name))
 
 (defvar scala-tmp-file nil)
 
@@ -175,6 +175,17 @@ def foo =
   "Send whole buffer to Scala interpreter."
   (interactive)
   (scala-eval-region (point-min) (point-max)))
+
+(defun scala-eval-block ()
+  (interactive)
+  (let* ((p (point)))
+    (mark-paragraph)
+    (scala-eval-region (region-beginning) (region-end))
+    (goto-char p)))
+
+(defun scala-eval-line ()
+  (interactive)
+  (scala-eval-region (line-beginning-position) (line-end-position)))
 
 (defvar scala-prev-l/c-dir/file nil
   "Caches the last (directory . file) pair.

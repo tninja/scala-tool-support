@@ -196,11 +196,23 @@ When started, run `scala-mode-hook'.
    indent-line-function          'scala-indent-line
    )
 
-  (use-local-map scala-mode-map)
+  use-local-map scala-mo
   (turn-on-font-lock)
   (scala-mode-feature-install)
   )
 
+(progn (define-key scala-mode-map "\C-c\C-i" 'scala-run-scala)
+       (define-key scala-mode-map "\C-c\C-r" 'scala-eval-region)
+       (define-key scala-mode-map "\C-c\C-c" 'scala-eval-block)
+       'scala-eval-line
+       (define-key scala-mode-map "\C-c\C-b" 'scala-eval-buffer)
+       (define-key scala-mode-map "\C-c\C-d" 'scala-eval-definition)
+       (define-key scala-mode-map "\C-c\C-z" 'scala-switch-to-interpreter))
+
+(progn
+  (add-to-list 'auto-mode-alist
+               '("\\.\\(scala\\|sbt\\|spark\\)\\'" . scala-mode))
+  (modify-coding-system-alist 'file "\\.\\(scala\\|sbt\\|spark\\)\\'" 'utf-8))
 
 ;; Local Variables:
 ;; mode: emacs-lisp
