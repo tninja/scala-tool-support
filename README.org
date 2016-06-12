@@ -1,9 +1,38 @@
+#+TITLE: Scala spark-shell mode
+#+DATE: <2016-06-12 Sun>
+#+AUTHOR: Kang Tu
+#+EMAIL: tninja@Pengs-MacBook-Pro.local
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:nil arch:headline
+#+OPTIONS: author:t c:nil creator:comment d:(not "LOGBOOK") date:t
+#+OPTIONS: e:t email:nil f:t inline:t num:t p:nil pri:nil stat:t
+#+OPTIONS: tags:t tasks:t tex:t timestamp:t toc:nil todo:t |:t
+#+CREATOR: Emacs 24.5.1 (Org mode 8.2.10)
+#+DESCRIPTION:
+#+EXCLUDE_TAGS: noexport
+#+KEYWORDS:
+#+LANGUAGE: en
+#+SELECT_TAGS: export
 
-* scala-spark-mode
+* Motiviation
+ 
+Spark-shell is a good place to develop and test spark / spark sql code interactively. As a data scientist / engineer, I wish I have a editor support for that. I hope the editor would looks like RStudio / emacs ESS / ipython notebook. Not able to find an available on online, I made a slightly change to scala-mode (from https://github.com/scala/scala-tool-support) to support interactive spark script development with spark-shell.
 
-- tool-support/emacs: a slightly modified scala-mode to support interactive spark script development with spark-shell
+* Features
 
-** Install
+** scala-mode for spark-shell
+
+- Features from scala-mode like keyword highlight etc
+- Interactive spark script development, with ess / R-mode like key-binding
+
+** literature programming support with org-mode
+
+- Can run code block and print result to org document as an org-babel plugin
+
+* Install / configuration
+
+Requirement: emacs 24.5 and org-mode version >= 8.2.10
+
+** Basic support
 
 You can copy over tool-support/emacs to some place, and put the following code to your .emacs to load them
 
@@ -16,11 +45,11 @@ You can copy over tool-support/emacs to some place, and put the following code t
   (require 'scala-mode)
 #+end_src
 
-** Launch spark-shell in a comint buffer
+*** Modify spark-shell launch command
 
-You can modify the spark-shell to some other thing to load your own jar and add your own start configuration like --num-executors, etc
+You can modify the spark-shell to some other thing to load your own jar and add your own start configuration like --num-executors, etc by redefine scala-interpreter
 
-#+name: launcher.config
+#+name: launcher-config
 #+begin_src elisp :eval never
   (defcustom scala-interpreter "spark-shell"
     "The interpreter that `run-scala' should run. This should
@@ -31,10 +60,10 @@ You can modify the spark-shell to some other thing to load your own jar and add 
 
 In a file buffer with .scala or .spark suffix, M-x scala-run-scala will open an spark-shell buffer.
 
-** Send code and eval them in the spark-shell buffer
+*** Send code and eval them in the spark-shell buffer
 
 - Line / block / region / buffer evaluation.
-- The key-binding is ess R-mode flavor.
+- The key-binding is ess / R-mode flavor
 
 #+name: key-binding
 #+begin_src elisp :eval never
@@ -46,3 +75,20 @@ In a file buffer with .scala or .spark suffix, M-x scala-run-scala will open an 
          (define-key scala-mode-map "\C-c\C-d" 'scala-eval-definition)
          (define-key scala-mode-map "\C-c\C-z" 'scala-switch-to-interpreter))
 #+end_src
+
+** Literature programming setup
+
+Add the spark-shell language support to your org-babel-load-languages list, like this:
+
+#+name: babel-config
+#+begin_src elisp :eval never
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((R . t)
+     (spark-shell . t)
+     (python . t)
+     (org . t))
+  )
+#+end_src
+
+[[file:helloworld.org][Here]] goes an spark-shell literature programming example.

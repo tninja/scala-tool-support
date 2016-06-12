@@ -196,7 +196,7 @@ When started, run `scala-mode-hook'.
    indent-line-function          'scala-indent-line
    )
 
-  use-local-map scala-mo
+  use-local-map scala-mode
   (turn-on-font-lock)
   (scala-mode-feature-install)
   )
