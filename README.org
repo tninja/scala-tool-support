@@ -1,0 +1,43 @@
+
+* scala-spark-mode
+
+- tool-support/emacs: a slightly modified scala-mode to support interactive development with spark-shell
+
+** Install
+
+You can copy over tool-support/emacs to some place, and put the following code to your .emacs to load them
+
+#+name: load
+#+begin_src elisp :eval never
+  (progn
+    (cd "<<path-to-scala-spark-mode-elisp-dir>>")
+    (normal-top-level-add-subdirs-to-load-path))
+#+end_src
+
+** Launch spark-shell in a comint buffer
+
+You can modify the spark-shell to some other thing to load your own jar and add your own start configuration like --num-executors, etc
+
+#+name: launch
+#+begin_src elisp :eval never
+  (defcustom scala-interpreter "spark-shell"
+    "The interpreter that `run-scala' should run. This should
+   be a program in your PATH or the full pathname of the scala interpreter."
+    :type 'string
+    :group 'scala-mode-inf)
+#+end_src
+
+** Key binding
+
+- The key-binding is ess R-mode flavor.
+
+#+name: key-binding
+#+begin_src elisp :eval never
+  (progn (define-key scala-mode-map "\C-c\C-i" 'scala-run-scala)
+         (define-key scala-mode-map "\C-c\C-r" 'scala-eval-region)
+         (define-key scala-mode-map "\C-c\C-c" 'scala-eval-block)
+         'scala-eval-line
+         (define-key scala-mode-map "\C-c\C-b" 'scala-eval-buffer)
+         (define-key scala-mode-map "\C-c\C-d" 'scala-eval-definition)
+         (define-key scala-mode-map "\C-c\C-z" 'scala-switch-to-interpreter))
+#+end_src
