@@ -30,7 +30,10 @@ Spark-shell is a good place to develop and test spark / spark sql code interacti
 
 * Install / configuration
 
-Requirement: emacs 24.5 and org-mode version >= 8.2.10
+Requirement: 
+
+- emacs 24.5 and org-mode version >= 8.2.10
+- it is conflict with other scala-mode, probably need to remove them, sadly
 
 ** Basic support
 
