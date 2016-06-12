@@ -1,7 +1,7 @@
 
 * scala-spark-mode
 
-- tool-support/emacs: a slightly modified scala-mode to support interactive development with spark-shell
+- tool-support/emacs: a slightly modified scala-mode to support interactive spark script development with spark-shell
 
 ** Install
 
