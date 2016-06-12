@@ -31,8 +31,9 @@ You can modify the spark-shell to some other thing to load your own jar and add 
 
 In a file buffer with .scala or .spark suffix, M-x scala-run-scala will open an spark-shell buffer.
 
-** Key binding
+** Send code and eval them in the spark-shell buffer
 
+- Line / block / region / buffer evaluation.
 - The key-binding is ess R-mode flavor.
 
 #+name: key-binding
