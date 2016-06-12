@@ -34,12 +34,12 @@ Requirement: emacs 24.5 and org-mode version >= 8.2.10
 
 ** Basic support
 
-You can copy over tool-support/emacs to some place, and put the following code to your .emacs to load them
+You can git clone this repo, and put the following code to your .emacs to load them
 
 #+name: load
 #+begin_src elisp :eval never
   (progn
-    (cd "<<path-to-scala-spark-mode-elisp-dir>>")
+    (cd "<<path-to-scala-spark-shell-mode-elisp-dir>>")
     (normal-top-level-add-subdirs-to-load-path))
 
   (require 'scala-mode)
