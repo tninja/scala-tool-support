@@ -204,7 +204,7 @@ When started, run `scala-mode-hook'.
 (progn (define-key scala-mode-map "\C-c\C-i" 'scala-run-scala)
        (define-key scala-mode-map "\C-c\C-r" 'scala-eval-region)
        (define-key scala-mode-map "\C-c\C-c" 'scala-eval-block)
-       'scala-eval-line
+       (define-key scala-mode-map "\C-c\C-j" 'scala-eval-line)
        (define-key scala-mode-map "\C-c\C-b" 'scala-eval-buffer)
        (define-key scala-mode-map "\C-c\C-d" 'scala-eval-definition)
        (define-key scala-mode-map "\C-c\C-z" 'scala-switch-to-interpreter))
