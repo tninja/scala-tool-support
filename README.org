@@ -12,13 +12,15 @@ You can copy over tool-support/emacs to some place, and put the following code t
   (progn
     (cd "<<path-to-scala-spark-mode-elisp-dir>>")
     (normal-top-level-add-subdirs-to-load-path))
+
+  (require 'scala-mode)
 #+end_src
 
 ** Launch spark-shell in a comint buffer
 
 You can modify the spark-shell to some other thing to load your own jar and add your own start configuration like --num-executors, etc
 
-#+name: launch
+#+name: launcher.config
 #+begin_src elisp :eval never
   (defcustom scala-interpreter "spark-shell"
     "The interpreter that `run-scala' should run. This should
@@ -26,6 +28,8 @@ You can modify the spark-shell to some other thing to load your own jar and add 
     :type 'string
     :group 'scala-mode-inf)
 #+end_src
+
+In a file buffer with .scala or .spark suffix, M-x scala-run-scala will open an spark-shell buffer.
 
 ** Key binding
 
