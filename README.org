@@ -96,6 +96,8 @@ Add the spark-shell language support to your org-babel-load-languages list, like
 
 [[file:helloworld.org][Here]] goes an spark-shell literature programming example.
 
-* TODO Future Tasks [0/1]
+* TODO Future Tasks [0/2]
 
-** TODO Add code to handle output of spark-shell code chunk into a org-table
+** TODO [#A] Figure out a way to clean up the output of spark-shell (executed results kept there)
+
+** TODO [#B] Add code to handle output of spark-shell code chunk into a org-table
