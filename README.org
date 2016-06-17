@@ -15,7 +15,7 @@
 
 * Motivation
  
-Spark-shell is a good place to develop and test spark / spark sql code interactively. As a data scientist / engineer, I wish I have a editor support for that. I hope the editor would looks like RStudio / emacs ESS / ipython notebook. Not able to find an available on online, I made a slightly change to scala-mode (from https://github.com/scala/scala-tool-support) to support interactive spark script development with spark-shell.
+Spark-shell is a good place to develop and test spark / spark sql code interactively. As a data scientist / engineer, I wish I have a editor support for that. I hope the editor would looks like RStudio / emacs ESS / ipython notebook. Not able to find an available emacs binding, here I made a slightly change to scala-mode (from https://github.com/scala/scala-tool-support) to support interactive spark script development with spark-shell.
 
 * Features
 
